@@ -42,7 +42,7 @@ public class GameBoardPanel extends JPanel {
     }
 
     /**
-     * 生成一局新游戏，基于生成的新游戏中的数据重新初始化gameboard中包含的每一个cell对象
+     * 生成一局新游戏，基于生成的新游戏中的数据重新初始化gameBoard中包含的每一个cell对象
      */
     public void newGame() {
         puzzle.newPuzzle(2);
