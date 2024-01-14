@@ -1,9 +1,11 @@
 import java.awt.*;
+import java.io.Serial;
 import javax.swing.*;
 /**
  * 运行Sudoku游戏的程序
  */
 public class SudokuMain extends JFrame {
+    @Serial
     private static final long serialVersionUID = 1L;
     GameBoardPanel board = new GameBoardPanel();
 

@@ -24,6 +24,9 @@ public class CellInputListener implements ActionListener {
          * 根据上面的判断结论更新单元格的状态为CellStatus.CORRECT_GUESS或者CellStatus.WRONG_GUESS
          * 一旦单元格的属性值（状态就是它的属性值之一）被更新，那么就应该调用sourceCell.paint()，触发重新绘制单元格的外观
          */
+        if (e.equals(ActionEvent.)) {
+
+        }
         /*
          * [TODO 3]
          * 一个单元格的状态变化了，那么就应该调用GameBoardPanel中的isSolved方法，用来判断游戏是否结束

@@ -32,7 +32,6 @@ public class GameBoardPanel extends JPanel {
         }
         listener = new CellInputListener(this);
 
-        // [TODO 1]
         // 为所有可编辑的单元格（即需要输入数字）绑定监听器对象
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
