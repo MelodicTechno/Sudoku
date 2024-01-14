@@ -34,13 +34,13 @@ public class CellInputListener implements ActionListener {
         }
         sourceCell.paint();
         /*
-         * [TODO 3]
          * 一个单元格的状态变化了，那么就应该调用GameBoardPanel中的isSolved方法，用来判断游戏是否结束
          * 如果游戏成功解决，那么就可以弹出对话框显示结果。
          */
         if (gameBoard.isSolved()) {
             JFrame dialogFrame = new JFrame();
             SudokuDialog sudokuDialog = new SudokuDialog(dialogFrame);
+            sudokuDialog.setVisible(true);
         }
     }
 }

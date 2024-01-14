@@ -7,6 +7,5 @@ public class SudokuDialog extends JDialog {
         Container c = getContentPane();
         c.add(new JLabel("你赢辣"));
         setBounds(400,300,100,100);
-        setVisible(true);
     }
 }
