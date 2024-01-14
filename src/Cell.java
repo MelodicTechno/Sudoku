@@ -43,6 +43,7 @@ public class Cell extends JTextField {
         paint();    // 因为数字和状态变化了，所以需要重新绘制自己的外观
     }
 
+
     /** 单元格的外观取决于状态 */
     public void paint() {
         // 以下方法的调用都使用了super，其实是没有必要的，主要是让同学们了解这些方法都是JTextField类中定义的方法
