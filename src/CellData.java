@@ -56,7 +56,32 @@ public class CellData {
         }
         return true;
     }
-    public void Shuffle() {
 
+    // 打乱九宫格内的数字
+    public void Shuffle() {
+        Random random = new Random();
+        // 打乱50次
+        for (int i = 0; i < 50; i ++) {
+            // 需要交换的九宫格
+            int nineToSwap = random.nextInt(0, 6);
+            // 每个九宫格内只有三列三行所以是3
+            int rowToSwap = nineToSwap + random.nextInt(0, 3);
+            int rowBeSwapped = nineToSwap + random.nextInt(0, 3);
+            int colToSwap = nineToSwap + random.nextInt(0, 3);
+            int colBeSwapped = nineToSwap + random.nextInt(0, 3);
+            // 先交换行 顺序当然无所谓
+            for (int col = 0; col < COL_SIZE; col++) {
+                // 对每两个数字进行交换
+                int swap = data[rowToSwap][col];
+                data[rowToSwap][col] = data[rowBeSwapped][col];
+                data[rowBeSwapped][col] = swap;
+            }
+            // 列也是一样
+            for (int row = 0; row < ROW_SIZE; row++) {
+                int swap = data[row][colToSwap];
+                data[row][colToSwap] = data[row][colBeSwapped];
+                data[row][colBeSwapped] = swap;
+            }
+        }
     }
 }
