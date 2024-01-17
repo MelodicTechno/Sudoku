@@ -12,8 +12,9 @@ public class Puzzle {
     // 可以利用猜测的单元个数的多少做为游戏难度级别的设定依据
     // 这个方法需要对numbers数组和isGiven数组进行更新
     public void newPuzzle(int cellsToGuess) {
+        CellData cellData = new CellData();
         // hardcodedNumbers是预先设定的一局游戏的数字分布
-        Random random = new Random();
+
 //        int[][] hardcodedNumbers =
 //                {{5, 3, 4, 6, 7, 8, 9, 1, 2},
 //                        {6, 7, 2, 1, 9, 5, 3, 4, 8},
@@ -25,9 +26,10 @@ public class Puzzle {
 //                        {2, 8, 7, 4, 1, 9, 6, 3, 5},
 //                        {3, 4, 5, 2, 8, 6, 1, 7, 9}};
 
+        int[][] hardcodedNumbers = cellData.getData();
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
-                numbers[row][col] = random.nextInt(0,10);
+                numbers[row][col] = hardcodedNumbers[row][col];
             }
         }
 

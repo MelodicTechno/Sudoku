@@ -15,16 +15,23 @@ public class CellData {
         int number = randomInt.nextInt(1, 10);
         for (int row = 0; row < COL_SIZE; row++) {
             for (int col = 0; col < ROW_SIZE; col++) {
-                if (checkColumn(number, col) && checkRow(number, row) && checkNine(number, ROW_SIZE % row,
-                        COL_SIZE % col)) {
-                    data[row][col] = number;
+                for (int k = 0; k < 9; k++) {
+                    if (checkColumn(number, col) && checkRow(number, row) && checkNine(number, row / 3,
+                            col / 3)) {
+                        data[row][col] = number;
+                        break;
+                    }
+                    else {
+                        number = number % 9 + 1;
+                    }
                 }
-                number = (number + 1) % 9;
-                data[row][col] = number;
             }
+            number = number % 9 + 1;
         }
     }
     public int[][] getData() {
+        generateInitialData();
+        shuffle();
         return data;
     }
     // 检查列是否有重复元素
@@ -47,8 +54,10 @@ public class CellData {
     }
     // 检查每个九宫格是否有重复元素
     public boolean checkNine(int number, int nineRow, int nineCol) {
-        for (int row = nineRow; row < nineRow + 2; row++) {
-            for (int col = nineCol; col < nineCol + 2; col++) {
+        nineRow *= 3;
+        nineCol *= 3;
+        for (int row = nineRow; row < nineRow + 3; row++) {
+            for (int col = nineCol; col < nineCol + 3; col++) {
                 if (data[row][col] == number) {
                     return false;
                 }
@@ -58,12 +67,12 @@ public class CellData {
     }
 
     // 打乱九宫格内的数字
-    public void Shuffle() {
+    public void shuffle() {
         Random random = new Random();
         // 打乱50次
         for (int i = 0; i < 50; i ++) {
             // 需要交换的九宫格
-            int nineToSwap = random.nextInt(0, 6);
+            int nineToSwap = random.nextInt(0, 3) * 3;
             // 每个九宫格内只有三列三行所以是3
             int rowToSwap = nineToSwap + random.nextInt(0, 3);
             int rowBeSwapped = nineToSwap + random.nextInt(0, 3);
