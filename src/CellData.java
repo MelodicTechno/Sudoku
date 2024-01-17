@@ -4,6 +4,7 @@ import java.util.Random;
 public class CellData {
     // 存储数独单元格数据的数组
     private int[][] data = new int[9][9];
+    private boolean[][] isGivenMatrix = new boolean[9][9];
     private final int COL_SIZE = 9;
     private final int ROW_SIZE = 9;
     // 构造函数
@@ -92,5 +93,46 @@ public class CellData {
                 data[row][colBeSwapped] = swap;
             }
         }
+    }
+    public boolean[][] getIsGiven(GameDifficulty difficulty) {
+        int numOfNotGiven = 0;
+        Random maskPosition = new Random();
+        switch (difficulty) {
+            case EASY :
+                numOfNotGiven = 10;
+                break;
+            case INTERMEDIATE:
+                numOfNotGiven = 20;
+                break;
+            case DIFFICULT:
+                numOfNotGiven = 40;
+        }
+        for (int row = 0; row < ROW_SIZE; row++) {
+            for (int col = 0; col < COL_SIZE; col++) {
+                isGivenMatrix[row][col] = true;
+            }
+        }
+        // 难度多高就循环多少次
+        for (int i = 0; i < numOfNotGiven; i++) {
+            int rowToBeMasked = maskPosition.nextInt(0, 9);
+            int colToBeMasked = maskPosition.nextInt(0, 9);
+            isGivenMatrix[rowToBeMasked][colToBeMasked] = false;
+        }
+        return isGivenMatrix;
+    }
+    public boolean[][] getIsGiven(int cellsToGuess) {
+        Random maskPosition = new Random();
+        for (int row = 0; row < ROW_SIZE; row++) {
+            for (int col = 0; col < COL_SIZE; col++) {
+                isGivenMatrix[row][col] = true;
+            }
+        }
+        // 难度多高就循环多少次
+        for (int i = 0; i < cellsToGuess; i++) {
+            int rowToBeMasked = maskPosition.nextInt(0, 9);
+            int colToBeMasked = maskPosition.nextInt(0, 9);
+            isGivenMatrix[rowToBeMasked][colToBeMasked] = false;
+        }
+        return isGivenMatrix;
     }
 }

@@ -23,7 +23,7 @@ public class GameBoardPanel extends JPanel {
     public GameBoardPanel() {
         super.setLayout(new GridLayout(SudokuConstants.GRID_SIZE, SudokuConstants.GRID_SIZE));
 
-        // 将Cell对象组件加入到Panle对象中
+        // 将Cell对象组件加入到Panel对象中
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
                 cells[row][col] = new Cell(row, col);
