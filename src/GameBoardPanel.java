@@ -25,7 +25,8 @@ public class GameBoardPanel extends JPanel {
     private GameDifficulty difficulty;
     public GameBoardPanel() {
         super.setLayout(new GridLayout(SudokuConstants.GRID_SIZE, SudokuConstants.GRID_SIZE));
-
+        // 设置默认难度为简单
+        difficulty = GameDifficulty.EASY;
         // 将Cell对象组件加入到Panel对象中
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
@@ -79,5 +80,9 @@ public class GameBoardPanel extends JPanel {
             }
         }
         return true;
+    }
+    // 
+    public void setDifficulty(GameDifficulty difficulty) {
+
     }
 }
