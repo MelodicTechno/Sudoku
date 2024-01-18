@@ -81,8 +81,11 @@ public class GameBoardPanel extends JPanel {
         }
         return true;
     }
-    // 
+    //
     public void setDifficulty(GameDifficulty difficulty) {
-
+        this.difficulty = difficulty;
+    }
+    public GameDifficulty getDifficulty() {
+        return difficulty;
     }
 }

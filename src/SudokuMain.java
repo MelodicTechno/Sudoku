@@ -9,15 +9,16 @@ public class SudokuMain extends JFrame {
     private static final long serialVersionUID = 1L;
     GameBoardPanel board = new GameBoardPanel();
     // 选择难度的界面
-    WelcomePanel welcome = new WelcomePanel();
+    WelcomePanel welcome = new WelcomePanel(board);
     public SudokuMain() {
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
         cp.add(board, BorderLayout.CENTER);
-        cp.add(welcome, BorderLayout.CENTER);
+        // cp.add(welcome, BorderLayout.CENTER);
 
         // 初始化一局游戏面板
-        board.newGame();
+        // 默认难度为简单
+        board.newGame(board.getDifficulty());
 
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,6 +38,7 @@ public class SudokuMain extends JFrame {
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run(){
+
                 new SudokuMain();
             }
         });

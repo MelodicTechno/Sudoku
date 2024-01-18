@@ -22,7 +22,10 @@ public class WelcomeListener implements ActionListener {
         // 获取被按下的按键
         DifficultyButton button = (DifficultyButton) e.getSource();
         GameDifficulty difficulty = button.getDifficulty();
-
-        System.out.println(difficulty);
+        // 设定难度
+        board.setDifficulty(difficulty);
+        // 看看能不能关掉页面
+        welcomePage.setVisible(false);
+        board.setVisible(true);
     }
 }
