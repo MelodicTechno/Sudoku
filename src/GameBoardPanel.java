@@ -19,7 +19,10 @@ public class GameBoardPanel extends JPanel {
     private Cell[][] cells = new Cell[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE];
     private Puzzle puzzle = new Puzzle();
     private CellInputListener listener;
-
+    private WelcomeListener welcomeListener;
+    private  WelcomePanel welcomePage;
+    // 游戏难度
+    private GameDifficulty difficulty;
     public GameBoardPanel() {
         super.setLayout(new GridLayout(SudokuConstants.GRID_SIZE, SudokuConstants.GRID_SIZE));
 
@@ -31,6 +34,7 @@ public class GameBoardPanel extends JPanel {
             }
         }
         listener = new CellInputListener(this);
+        welcomeListener = new WelcomeListener(this , welcomePage);
 
         // 为所有可编辑的单元格（即需要输入数字）绑定监听器对象
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
@@ -46,6 +50,15 @@ public class GameBoardPanel extends JPanel {
      */
     public void newGame() {
         puzzle.newPuzzle(2);
+        for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
+            for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
+                cells[row][col].newGame(puzzle.numbers[row][col], puzzle.isGiven[row][col]);
+            }
+        }
+    }
+    // 可接受难度参数的newGame()
+    public void newGame(GameDifficulty difficulty) {
+        puzzle.newPuzzle(difficulty);
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
                 cells[row][col].newGame(puzzle.numbers[row][col], puzzle.isGiven[row][col]);

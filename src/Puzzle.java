@@ -52,4 +52,23 @@ public class Puzzle {
             }
         }
     }
+    public void newPuzzle(GameDifficulty difficulty) {
+        CellData cellData = new CellData();
+        // hardcodedNumbers是预先设定的一局游戏的数字分布
+        int[][] hardcodedNumbers = cellData.getData();
+        for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
+            for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
+                numbers[row][col] = hardcodedNumbers[row][col];
+            }
+        }
+
+        // 可以使用cellsToGuess的值初始化isGiven数组中false的数量，即需要猜测的单元格数量
+        // hardcodedIsGiven是预先设定的有哪些位置的单元格被暴露（在下面的数据中只指定暴露2个单元格）
+        boolean[][] hardcodedIsGiven = cellData.getIsGiven(difficulty);
+        for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
+            for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
+                isGiven[row][col] = hardcodedIsGiven[row][col];
+            }
+        }
+    }
 }
