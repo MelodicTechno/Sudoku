@@ -12,8 +12,16 @@ public class WelcomePanel extends JPanel {
     private DifficultyButton chooseDifficulty;
     private final DifficultyButton[] dificulties;
     private WelcomeListener listener;
-    public WelcomePanel(GameBoardPanel board) {
-        listener = new WelcomeListener(board, this);
+    // 游戏的难度
+
+    private Container cp;
+    private GameBoardPanel board;
+    private SudokuMain main;
+
+    public WelcomePanel(Container cp, SudokuMain main) {
+        this.main = main;
+        this.cp = cp;
+        listener = new WelcomeListener(this, cp, main);
         this.chooseDifficulty = new DifficultyButton("选择难度");
         this.dificulties = new DifficultyButton[]{new DifficultyButton("简单"), new DifficultyButton("中等"),
                 new DifficultyButton("困难")};

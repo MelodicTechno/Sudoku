@@ -7,38 +7,37 @@ import javax.swing.*;
 public class SudokuMain extends JFrame {
     @Serial
     private static final long serialVersionUID = 1L;
-    GameBoardPanel board = new GameBoardPanel();
+    // GameBoardPanel board = new GameBoardPanel();
     // 选择难度的界面
-    WelcomePanel welcome = new WelcomePanel(board);
+    private GameDifficulty difficulty;
+
     public SudokuMain() {
+
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
-        cp.add(board, BorderLayout.CENTER);
-        // cp.add(welcome, BorderLayout.CENTER);
-
-        // 初始化一局游戏面板
-        // 默认难度为简单
-        board.newGame(board.getDifficulty());
-
+        WelcomePanel welcome = new WelcomePanel(cp, this);
+        cp.add(welcome, BorderLayout.CENTER);
+        // cp.add(board, BorderLayout.CENTER);
+        // board.newGame(getDifficulty());
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Sudoku");
         setVisible(true);
+
     }
-    public SudokuMain(GameDifficulty difficulty) {
-        this();
-        board.newGame(difficulty);
-        pack();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("Sudoku");
-        setVisible(true);
+    // 在这里设定游戏的难度
+    public void setDifficulty(GameDifficulty difficulty) {
+        this.difficulty = difficulty;
     }
 
+    public GameDifficulty getDifficulty() {
+        return difficulty;
+    }
     public static void main(String[] args) {
+
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run(){
-
                 new SudokuMain();
             }
         });

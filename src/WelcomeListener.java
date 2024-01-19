@@ -1,21 +1,22 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class WelcomeListener implements ActionListener {
-    private WelcomePanel welcomePage;
-    private GameBoardPanel board;
+    private final WelcomePanel welcomePage;
+    private Container cp;
+    private SudokuMain main;
     public WelcomeListener(WelcomePanel welcomePage) {
         if (welcomePage == null) {
             throw new IllegalArgumentException("Null pointer reference.");
         }
-        this.welcomePage =welcomePage;
-    }
-    public  WelcomeListener(GameBoardPanel board, WelcomePanel welcomePage) {
-        if (board == null) {
-            throw new IllegalArgumentException("Null pointer reference.");
-        }
         this.welcomePage = welcomePage;
-        this.board = board;
+    }
+    public  WelcomeListener(WelcomePanel welcomePage, Container cp, SudokuMain main) {
+        this.main = main;
+        this.cp = cp;
+
+        this.welcomePage = welcomePage;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -23,9 +24,13 @@ public class WelcomeListener implements ActionListener {
         DifficultyButton button = (DifficultyButton) e.getSource();
         GameDifficulty difficulty = button.getDifficulty();
         // 设定难度
-        board.setDifficulty(difficulty);
+        main.setDifficulty(difficulty);
+        System.out.println(main.getDifficulty());
         // 看看能不能关掉页面
         welcomePage.setVisible(false);
-        board.setVisible(true);
+        cp.remove(welcomePage);
+        GameBoardPanel board = new GameBoardPanel();
+        cp.add(board, BorderLayout.CENTER);
+        board.newGame(main.getDifficulty());
     }
 }
