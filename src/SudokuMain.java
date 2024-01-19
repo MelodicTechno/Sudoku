@@ -12,13 +12,13 @@ public class SudokuMain extends JFrame {
     private GameDifficulty difficulty;
 
     public SudokuMain() {
-
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
         WelcomePanel welcome = new WelcomePanel(cp, this);
+        JMenuBar menu = new SudokuMenuBar();
+        // cp.add(menu, BorderLayout.NORTH);
+        setJMenuBar(menu);
         cp.add(welcome, BorderLayout.CENTER);
-        // cp.add(board, BorderLayout.CENTER);
-        // board.newGame(getDifficulty());
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Sudoku");
@@ -34,7 +34,6 @@ public class SudokuMain extends JFrame {
         return difficulty;
     }
     public static void main(String[] args) {
-
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run(){

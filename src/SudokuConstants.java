@@ -5,4 +5,6 @@
 public class SudokuConstants {
     /** 定义游戏面板的大小，针对当前游戏是指每一行的单元格数 */
     public static final int GRID_SIZE = 9;
+    // 长度
+    public static final int WINDOW_SIZE = 9 * 9;
 }
