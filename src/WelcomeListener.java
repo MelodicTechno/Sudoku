@@ -25,7 +25,7 @@ public class WelcomeListener implements ActionListener {
         GameDifficulty difficulty = button.getDifficulty();
         // 设定难度
         main.setDifficulty(difficulty);
-        // 看看能不能关掉页面
+        // 关掉页面
         welcomePage.setVisible(false);
         cp.remove(welcomePage);
         GameBoardPanel board = new GameBoardPanel();

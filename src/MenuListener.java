@@ -14,12 +14,15 @@ public class MenuListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // 提供菜单的功能
         SudokuMenuItem menuItem = (SudokuMenuItem) e.getSource();
+        SudokuMain frame = (SudokuMain) menuBar.getFrame();
         switch (menuItem.getUsage()) {
             case (SudokuConstants.EXIT) :
-                menuBar.getFrame().dispose();
+                frame.dispose();
                 break;
             case (SudokuConstants.NEW_GAME) :
-                SudokuMain frame = (SudokuMain) menuBar.getFrame();
+                frame.newGame();
+                break;
+            case (SudokuConstants.RESET_GAME) :
                 frame.reset();
                 break;
         }
