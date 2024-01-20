@@ -15,6 +15,8 @@ public class CellInputListener implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        int numToBeFilled = gameBoard.getNumOfToBeFilled();
+        int numOfWrongGuess = 0;
         // 获得是哪个单元格出发了回车事件（获得事件源）
         Cell sourceCell = (Cell)e.getSource();
 
@@ -28,10 +30,13 @@ public class CellInputListener implements ActionListener {
          */
         if (sourceCell.number == numberIn) {
             sourceCell.status = CellStatus.CORRECT_GUESS;
+            numToBeFilled--;
         }
         else {
             sourceCell.status = CellStatus.WRONG_GUESS;
         }
+        int totalNumToGuess = SudokuConstants.difficultyToNumToGuess(gameBoard.getDifficulty());
+        gameBoard.setNumOfToBeFilled(totalNumToGuess);
         sourceCell.paint();
         /*
          * 一个单元格的状态变化了，那么就应该调用GameBoardPanel中的isSolved方法，用来判断游戏是否结束
@@ -41,6 +46,16 @@ public class CellInputListener implements ActionListener {
             JFrame dialogFrame = new JFrame();
             SudokuDialog sudokuDialog = new SudokuDialog(dialogFrame);
             sudokuDialog.setVisible(true);
+        }
+        Cell[][] cells = gameBoard.getCells();
+        for (int row = 0; row < SudokuConstants.GRID_SIZE; row++) {
+            for (int col = 0; col < SudokuConstants.GRID_SIZE; col++) {
+                if (cells[row][col].status == CellStatus.WRONG_GUESS) {
+                    gameBoard.setNumOfToBeFilled(gameBoard.getNumOfToBeFilled() + 1);
+                }
+
+            }
+
         }
     }
 }

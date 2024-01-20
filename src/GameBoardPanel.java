@@ -19,9 +19,16 @@ public class GameBoardPanel extends JPanel {
     private Cell[][] cells = new Cell[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE];
     private Puzzle puzzle = new Puzzle();
     private CellInputListener listener;
-
-    public GameBoardPanel() {
+    // 待填上的空格数
+    private int numOfToBeFilled;
+    private int numOfWromgGuess;
+    private final GameDifficulty difficulty;
+    // private SudokuState sudokuState;
+    public GameBoardPanel(GameDifficulty difficulty) {
         super.setLayout(new GridLayout(SudokuConstants.GRID_SIZE, SudokuConstants.GRID_SIZE));
+        this.difficulty = difficulty;
+        this.numOfToBeFilled = SudokuConstants.difficultyToNumToGuess(difficulty);
+        // sudokuState = new SudokuState();
         // 将Cell对象组件加入到Panel对象中
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
@@ -76,5 +83,24 @@ public class GameBoardPanel extends JPanel {
             }
         }
         return true;
+    }
+    public Cell[][] getCells() {
+        return cells;
+    }
+
+    public void setNumOfToBeFilled(int numOfToBeFilled) {
+        this.numOfToBeFilled = numOfToBeFilled;
+    }
+    public void setNumOfWromgGuess(int numOfWromgGuess) {
+        this.numOfToBeFilled = numOfWromgGuess;
+    }
+    public int getNumOfToBeFilled() {
+        return numOfToBeFilled;
+    }
+    public int getNumOfWromgGuess() {
+        return numOfWromgGuess;
+    }
+    public GameDifficulty getDifficulty() {
+        return difficulty;
     }
 }

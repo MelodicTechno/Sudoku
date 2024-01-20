@@ -10,4 +10,19 @@ public class SudokuConstants {
     public static final String EXIT = "exit";
     public static final String RESET_GAME = "reset game";
     public static final String NEW_GAME = "new game";
+    public static int difficultyToNumToGuess(GameDifficulty difficulty) {
+        int numToGuess = 0;
+        switch (difficulty) {
+            case EASY:
+                numToGuess = 10;
+                break;
+            case INTERMEDIATE:
+                numToGuess = 20;
+                break;
+            case DIFFICULT:
+                numToGuess = 40;
+                break;
+        }
+        return numToGuess;
+    }
 }

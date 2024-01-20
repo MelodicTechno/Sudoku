@@ -113,10 +113,14 @@ public class CellData {
             }
         }
         // 难度多高就循环多少次
-        for (int i = 0; i < numOfNotGiven; i++) {
+        int times = 0;
+        while (times < numOfNotGiven) {
             int rowToBeMasked = maskPosition.nextInt(0, 9);
             int colToBeMasked = maskPosition.nextInt(0, 9);
-            isGivenMatrix[rowToBeMasked][colToBeMasked] = false;
+            if (isGivenMatrix[rowToBeMasked][colToBeMasked]) {
+                isGivenMatrix[rowToBeMasked][colToBeMasked] = false;
+                times++;
+            }
         }
         return isGivenMatrix;
     }

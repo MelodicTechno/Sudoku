@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 public class Cell extends JTextField {
     @Serial
     private static final long serialVersionUID = 1L;
-
     // 预先定义好在单元格不同状态下的颜色常量
     public static final Color BG_GIVEN = new Color(240, 240, 240); // RGB
     public static final Color FG_GIVEN = Color.BLACK;

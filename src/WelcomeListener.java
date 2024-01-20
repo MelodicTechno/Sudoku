@@ -28,7 +28,7 @@ public class WelcomeListener implements ActionListener {
         // 关掉页面
         welcomePage.setVisible(false);
         cp.remove(welcomePage);
-        GameBoardPanel board = new GameBoardPanel();
+        GameBoardPanel board = new GameBoardPanel(difficulty);
         cp.add(board, BorderLayout.CENTER);
         board.newGame(main.getDifficulty());
     }

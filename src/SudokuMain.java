@@ -27,7 +27,7 @@ public class SudokuMain extends JFrame {
         cp.setLayout(new BorderLayout());
         JMenuBar menu = new SudokuMenuBar(this);
         setJMenuBar(menu);
-        GameBoardPanel board = new GameBoardPanel();
+        GameBoardPanel board = new GameBoardPanel(difficulty);
         cp.add(board, BorderLayout.CENTER);
         setDifficulty(difficulty);
         board.newGame(difficulty);
