@@ -15,7 +15,7 @@ public class SudokuMain extends JFrame {
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
         WelcomePanel welcome = new WelcomePanel(cp, this);
-        JMenuBar menu = new SudokuMenuBar();
+        JMenuBar menu = new SudokuMenuBar(this);
         // cp.add(menu, BorderLayout.NORTH);
         setJMenuBar(menu);
         cp.add(welcome, BorderLayout.CENTER);

@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
  */
 public class CellInputListener implements ActionListener {
     private GameBoardPanel gameBoard;
-    public CellInputListener(GameBoardPanel gameBoard){
+    public CellInputListener(GameBoardPanel gameBoard) {
         if (gameBoard == null)
             throw new IllegalArgumentException("Null pointer reference.");
         this.gameBoard = gameBoard;

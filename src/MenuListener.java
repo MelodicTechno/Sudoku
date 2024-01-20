@@ -1,0 +1,23 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class MenuListener implements ActionListener {
+    private SudokuMenuBar menuBar;
+    public MenuListener(SudokuMenuBar menuBar) {
+        if (menuBar == null) {
+            throw new IllegalArgumentException("Null pointer reference.");
+        }
+        this.menuBar = menuBar;
+    }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // 提供菜单的功能
+        SudokuMenuItem menuItem = (SudokuMenuItem) e.getSource();
+        switch (menuItem.getUsage()) {
+            case (SudokuConstants.EXIT) :
+                menuBar.getFrame().dispose();
+                break;
+        }
+    }
+}

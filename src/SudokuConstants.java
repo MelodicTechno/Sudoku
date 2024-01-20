@@ -7,4 +7,7 @@ public class SudokuConstants {
     public static final int GRID_SIZE = 9;
     // 长度
     public static final int WINDOW_SIZE = 9 * 9;
+    public static final String EXIT = "exit";
+    public static final String RESET_GAME = "reset game";
+    public static final String NEW_GAME = "new game";
 }
