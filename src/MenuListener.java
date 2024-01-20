@@ -18,6 +18,10 @@ public class MenuListener implements ActionListener {
             case (SudokuConstants.EXIT) :
                 menuBar.getFrame().dispose();
                 break;
+            case (SudokuConstants.NEW_GAME) :
+                SudokuMain frame = (SudokuMain) menuBar.getFrame();
+                frame.reset();
+                break;
         }
     }
 }

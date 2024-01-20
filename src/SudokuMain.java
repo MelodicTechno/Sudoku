@@ -7,7 +7,6 @@ import javax.swing.*;
 public class SudokuMain extends JFrame {
     @Serial
     private static final long serialVersionUID = 1L;
-    // GameBoardPanel board = new GameBoardPanel();
     // 选择难度的界面
     private GameDifficulty difficulty;
 
@@ -23,7 +22,6 @@ public class SudokuMain extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Sudoku");
         setVisible(true);
-
     }
     // 在这里设定游戏的难度
     public void setDifficulty(GameDifficulty difficulty) {
@@ -32,6 +30,10 @@ public class SudokuMain extends JFrame {
 
     public GameDifficulty getDifficulty() {
         return difficulty;
+    }
+    // 重启游戏的方法
+    public void reset() {
+        new SudokuMain();
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable(){
