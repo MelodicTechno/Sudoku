@@ -31,6 +31,10 @@ public class SudokuMain extends JFrame {
         cp.add(board, BorderLayout.CENTER);
         setDifficulty(difficulty);
         board.newGame(difficulty);
+        StatePanel statePanel = new StatePanel(board);
+        // SudokuState state = statePanel.getState();
+        // state.newState(board);
+        cp.add(statePanel, BorderLayout.NORTH);
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Sudoku");

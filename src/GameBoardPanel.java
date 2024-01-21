@@ -23,12 +23,12 @@ public class GameBoardPanel extends JPanel {
     private int numOfToBeFilled;
     private int numOfWromgGuess;
     private final GameDifficulty difficulty;
-    // private SudokuState sudokuState;
+    private SudokuState state;
     public GameBoardPanel(GameDifficulty difficulty) {
         super.setLayout(new GridLayout(SudokuConstants.GRID_SIZE, SudokuConstants.GRID_SIZE));
         this.difficulty = difficulty;
         this.numOfToBeFilled = SudokuConstants.difficultyToNumToGuess(difficulty);
-        // sudokuState = new SudokuState();
+        state = new SudokuState(this);
         // 将Cell对象组件加入到Panel对象中
         for (int row = 0; row < SudokuConstants.GRID_SIZE; ++row) {
             for (int col = 0; col < SudokuConstants.GRID_SIZE; ++col) {
@@ -102,5 +102,8 @@ public class GameBoardPanel extends JPanel {
     }
     public GameDifficulty getDifficulty() {
         return difficulty;
+    }
+    public SudokuState getState() {
+        return state;
     }
 }

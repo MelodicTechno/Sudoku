@@ -15,14 +15,18 @@ public class CellInputListener implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        // 初始剩余数即为总数
         int numToBeFilled = gameBoard.getNumOfToBeFilled();
-        int numOfWrongGuess = 0;
         // 获得是哪个单元格出发了回车事件（获得事件源）
         Cell sourceCell = (Cell)e.getSource();
-
+        // 如果什么都没输
+        String input = sourceCell.getText();
+        // 如果输入的不是数字就直接返回 防止例外
+        if (!processInput(input)) {
+            return;
+        }
         // 获得输入的数字
-        int numberIn = Integer.parseInt(sourceCell.getText());
-
+        int numberIn = Integer.parseInt(input);
         /*
          * 检查发生回车敲击事件的单元格中存储的数字和用户输入的数字是否相等
          * 根据上面的判断结论更新单元格的状态为CellStatus.CORRECT_GUESS或者CellStatus.WRONG_GUESS
@@ -30,13 +34,13 @@ public class CellInputListener implements ActionListener {
          */
         if (sourceCell.number == numberIn) {
             sourceCell.status = CellStatus.CORRECT_GUESS;
-            numToBeFilled--;
+            sourceCell.setEditable(false);
         }
         else {
             sourceCell.status = CellStatus.WRONG_GUESS;
         }
-        int totalNumToGuess = SudokuConstants.difficultyToNumToGuess(gameBoard.getDifficulty());
-        gameBoard.setNumOfToBeFilled(totalNumToGuess);
+        SudokuState state = gameBoard.getState();
+        state.newState(gameBoard);
         sourceCell.paint();
         /*
          * 一个单元格的状态变化了，那么就应该调用GameBoardPanel中的isSolved方法，用来判断游戏是否结束
@@ -57,5 +61,12 @@ public class CellInputListener implements ActionListener {
             }
 
         }
+    }
+    // 对输入是数据进行处理 看看是不是输入数字
+    public boolean processInput(String text) {
+        return switch (text) {
+            case "1", "2", "3", "4", "5", "6", "7", "8", "9" -> true;
+            default -> false;
+        };
     }
 }

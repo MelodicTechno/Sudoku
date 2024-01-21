@@ -15,7 +15,6 @@ public class WelcomeListener implements ActionListener {
     public  WelcomeListener(WelcomePanel welcomePage, Container cp, SudokuMain main) {
         this.main = main;
         this.cp = cp;
-
         this.welcomePage = welcomePage;
     }
     @Override
@@ -29,7 +28,11 @@ public class WelcomeListener implements ActionListener {
         welcomePage.setVisible(false);
         cp.remove(welcomePage);
         GameBoardPanel board = new GameBoardPanel(difficulty);
+        StatePanel statePanel = new StatePanel(board);
+        // SudokuState state = statePanel.getState();
+        // state.newState(board);
         cp.add(board, BorderLayout.CENTER);
+        cp.add(statePanel, BorderLayout.NORTH);
         board.newGame(main.getDifficulty());
     }
 }
