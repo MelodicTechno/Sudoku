@@ -29,8 +29,6 @@ public class WelcomeListener implements ActionListener {
         cp.remove(welcomePage);
         GameBoardPanel board = new GameBoardPanel(difficulty);
         StatePanel statePanel = new StatePanel(board);
-        // SudokuState state = statePanel.getState();
-        // state.newState(board);
         board.setStatePanel(statePanel);
         cp.add(board, BorderLayout.CENTER);
         cp.add(statePanel, BorderLayout.NORTH);

@@ -30,12 +30,10 @@ public class SudokuMain extends JFrame {
         GameBoardPanel board = new GameBoardPanel(difficulty);
         cp.add(board, BorderLayout.CENTER);
         setDifficulty(difficulty);
-        board.newGame(difficulty);
         StatePanel statePanel = new StatePanel(board);
         board.setStatePanel(statePanel);
-        // SudokuState state = statePanel.getState();
-        // state.newState(board);
         cp.add(statePanel, BorderLayout.NORTH);
+        board.newGame(difficulty);
         pack();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Sudoku");
@@ -52,12 +50,12 @@ public class SudokuMain extends JFrame {
     // 重启游戏的方法
     public void newGame() {
         new SudokuMain();
-        this.dispose();
+        dispose();
     }
     public void reset() {
         GameDifficulty newDifficulty = getDifficulty();
         new SudokuMain(newDifficulty);
-        this.dispose();
+        dispose();
     }
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable(){
