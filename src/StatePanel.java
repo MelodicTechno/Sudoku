@@ -19,4 +19,7 @@ public class StatePanel extends JPanel {
     public SudokuState getState() {
         return state;
     }
+    public SudokuTimer getTimer() {
+        return timer;
+    }
 }

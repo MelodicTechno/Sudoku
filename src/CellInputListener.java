@@ -47,19 +47,13 @@ public class CellInputListener implements ActionListener {
          * 如果游戏成功解决，那么就可以弹出对话框显示结果。
          */
         if (gameBoard.isSolved()) {
+            // 让计时器暂停
+            StatePanel statePanel = gameBoard.getStatePanel();
+            SudokuTimer timer = statePanel.getTimer();
+            timer.stop();
             JFrame dialogFrame = new JFrame();
             SudokuDialog sudokuDialog = new SudokuDialog(dialogFrame);
             sudokuDialog.setVisible(true);
-        }
-        Cell[][] cells = gameBoard.getCells();
-        for (int row = 0; row < SudokuConstants.GRID_SIZE; row++) {
-            for (int col = 0; col < SudokuConstants.GRID_SIZE; col++) {
-                if (cells[row][col].status == CellStatus.WRONG_GUESS) {
-                    gameBoard.setNumOfToBeFilled(gameBoard.getNumOfToBeFilled() + 1);
-                }
-
-            }
-
         }
     }
     // 对输入是数据进行处理 看看是不是输入数字

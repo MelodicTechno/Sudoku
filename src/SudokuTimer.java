@@ -59,4 +59,7 @@ public class SudokuTimer extends JLabel {
             return String.format("%02d:%02d:%02d", hour, minute, second);
         }
     }
+    public void stop() {
+        thread.stopped = true;
+    }
 }

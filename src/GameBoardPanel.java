@@ -24,6 +24,7 @@ public class GameBoardPanel extends JPanel {
     private int numOfWromgGuess;
     private final GameDifficulty difficulty;
     private SudokuState state;
+    private StatePanel statePanel;
     public GameBoardPanel(GameDifficulty difficulty) {
         super.setLayout(new GridLayout(SudokuConstants.GRID_SIZE, SudokuConstants.GRID_SIZE));
         this.difficulty = difficulty;
@@ -105,5 +106,11 @@ public class GameBoardPanel extends JPanel {
     }
     public SudokuState getState() {
         return state;
+    }
+    public void setStatePanel(StatePanel statePanel) {
+        this.statePanel = statePanel;
+    }
+    public StatePanel getStatePanel() {
+        return statePanel;
     }
 }
