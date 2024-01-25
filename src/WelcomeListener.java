@@ -31,6 +31,8 @@ public class WelcomeListener implements ActionListener {
         JMenuItem resetGame = menuBar.getResetGame();
         resetGame.setEnabled(true);
         GameBoardPanel board = new GameBoardPanel(difficulty);
+        main.setBoard(board);
+        board.setMain(main);
         StatePanel statePanel = new StatePanel(board);
         board.setStatePanel(statePanel);
         cp.add(board, BorderLayout.CENTER);

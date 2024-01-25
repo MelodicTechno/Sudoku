@@ -12,6 +12,7 @@ public class SudokuMain extends JFrame {
     // 选择难度的界面
     private GameDifficulty difficulty;
     private SudokuMenuBar menu;
+    private GameBoardPanel board;
     public SudokuMain() {
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
@@ -22,6 +23,7 @@ public class SudokuMain extends JFrame {
         setJMenuBar(menu);
         cp.add(welcome, BorderLayout.CENTER);
         pack();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Sudoku");
         setVisible(true);
@@ -32,6 +34,8 @@ public class SudokuMain extends JFrame {
         JMenuBar menu = new SudokuMenuBar(this);
         setJMenuBar(menu);
         GameBoardPanel board = new GameBoardPanel(difficulty);
+        setBoard(board);
+        board.setMain(this);
         cp.add(board, BorderLayout.CENTER);
         setDifficulty(difficulty);
         StatePanel statePanel = new StatePanel(board);
@@ -39,6 +43,7 @@ public class SudokuMain extends JFrame {
         cp.add(statePanel, BorderLayout.NORTH);
         board.newGame(difficulty);
         pack();
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Sudoku");
         setVisible(true);
@@ -60,6 +65,12 @@ public class SudokuMain extends JFrame {
         GameDifficulty newDifficulty = getDifficulty();
         new SudokuMain(newDifficulty);
         dispose();
+    }
+    public void setBoard(GameBoardPanel board) {
+        this.board = board;
+    }
+    public GameBoardPanel getBoard() {
+        return board;
     }
     public static void main(String[] args) {
         // 更改界面风格
