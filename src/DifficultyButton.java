@@ -7,13 +7,13 @@ public class DifficultyButton extends JButton {
         super(difficulty);
         // 设置按钮对应的难度
         switch (difficulty) {
-            case ("简单") :
+            case ("Easy") :
                 this.difficulty = GameDifficulty.EASY;
                 break;
-            case ("中等") :
+            case ("Intermediate") :
                 this.difficulty = GameDifficulty.INTERMEDIATE;
                 break;
-            case ("困难") :
+            case ("Hard") :
                 this.difficulty = GameDifficulty.DIFFICULT;
                 break;
         }
