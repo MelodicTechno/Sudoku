@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.io.Serial;
 import javax.swing.*;
+import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.UIManager;
 /**
  * 运行Sudoku游戏的程序
  */
@@ -58,6 +60,12 @@ public class SudokuMain extends JFrame {
         dispose();
     }
     public static void main(String[] args) {
+        // 更改界面风格
+        try {
+            UIManager.setLookAndFeel( new FlatLightLaf() );
+        } catch( Exception ex ) {
+            System.err.println( "Failed to initialize theme. Using fallback." );
+        }
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run(){
