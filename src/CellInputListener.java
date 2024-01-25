@@ -19,6 +19,9 @@ public class CellInputListener implements ActionListener {
         int numToBeFilled = gameBoard.getNumOfToBeFilled();
         // 获得是哪个单元格出发了回车事件（获得事件源）
         Cell sourceCell = (Cell)e.getSource();
+        if (sourceCell.status == CellStatus.GIVEN) {
+            return;
+        }
         // 如果什么都没输
         String input = sourceCell.getText();
         // 如果输入的不是数字就直接返回 防止例外
