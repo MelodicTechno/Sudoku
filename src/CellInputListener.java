@@ -51,8 +51,9 @@ public class CellInputListener implements ActionListener {
             StatePanel statePanel = gameBoard.getStatePanel();
             SudokuTimer timer = statePanel.getTimer();
             timer.stop();
+            String time = timer.getCurrentTime();
             JFrame dialogFrame = new JFrame();
-            SudokuDialog sudokuDialog = new SudokuDialog(dialogFrame);
+            SudokuDialog sudokuDialog = new SudokuDialog(dialogFrame, time);
             sudokuDialog.setVisible(true);
         }
     }

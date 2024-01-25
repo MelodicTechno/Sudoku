@@ -9,7 +9,7 @@ public class SudokuTimer extends JLabel {
     public static final Color FG_GIVEN = Color.BLACK;
     public static final Font STATE_FONT = new Font("Arial", Font.PLAIN, 22);
     // 当前时间
-    // private long currentTime;
+    private String currentTime;
     private final long initialTime;
     private final CountingThread thread = new CountingThread();
     public SudokuTimer() {
@@ -56,10 +56,14 @@ public class SudokuTimer extends JLabel {
             minute = (int) (passedTime % 60);
             passedTime /= 60;
             hour = (int) (passedTime % 60);
-            return String.format("%02d:%02d:%02d", hour, minute, second);
+            currentTime = String.format("%02d:%02d:%02d", hour, minute, second);
+            return currentTime;
         }
     }
     public void stop() {
         thread.stopped = true;
+    }
+    public String getCurrentTime() {
+        return currentTime;
     }
 }

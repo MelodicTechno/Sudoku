@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class DifficultyButton extends JButton {
     private GameDifficulty difficulty;
@@ -17,6 +18,8 @@ public class DifficultyButton extends JButton {
                 this.difficulty = GameDifficulty.DIFFICULT;
                 break;
         }
+        // 设置颜色
+        setBackground(Color.WHITE);
     }
     public GameDifficulty getDifficulty() {
         return difficulty;

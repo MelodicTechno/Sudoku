@@ -15,18 +15,13 @@ public class SudokuState extends JTextField {
     private int numOfWrongGuess;
     private GameBoardPanel board;
     public SudokuState(GameBoardPanel board) {
-        // 设置位置和字体
-        // setHorizontalAlignment(JTextField.NORTH);
-        // setFont(FONT_NUMBERS);
         this.board = board;
         setFont(STATE_FONT);
         this.numOfToBeFilled = board.getNumOfToBeFilled();
-        // System.out.println(numOfToBeFilled);
         paint();
     }
     // 更新状态
     public void newState(GameBoardPanel board) {
-        // numOftoBeFilled = board.getNumOfToBeFilled();
         numOfToBeFilled = 0;
         Cell[][] cells = board.getCells();
         for (int row = 0; row < SudokuConstants.GRID_SIZE; row++) {
@@ -41,7 +36,7 @@ public class SudokuState extends JTextField {
     // 绘制状态
     public void paint() {
         // 显示剩余空格数
-        setText("To be completed:" + numOfToBeFilled);
+        setText("To be completed: " + numOfToBeFilled);
         setEditable(false);
         setBackground(BG_GIVEN);
     }
