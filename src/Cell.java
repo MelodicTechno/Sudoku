@@ -19,7 +19,7 @@ public class Cell extends JTextField {
     public static final Color FG_NOT_GIVEN = Color.GRAY;
     public static final Color BG_TO_GUESS  = new Color(253, 219, 145);
     public static final Color BG_CORRECT_GUESS = new Color(198, 245, 198);
-    public static final Color BG_WRONG_GUESS   = new Color(246, 164, 164);
+    public static final Color BG_WRONG_GUESS = new Color(246, 164, 164);
     public static final Font FONT_NUMBERS = new Font("Arial", Font.PLAIN, 28);
 
 
