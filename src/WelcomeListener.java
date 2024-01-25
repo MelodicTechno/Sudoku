@@ -27,6 +27,9 @@ public class WelcomeListener implements ActionListener {
         // 关掉页面
         welcomePage.setVisible(false);
         cp.remove(welcomePage);
+        SudokuMenuBar menuBar = (SudokuMenuBar) main.getJMenuBar();
+        JMenuItem resetGame = menuBar.getResetGame();
+        resetGame.setEnabled(true);
         GameBoardPanel board = new GameBoardPanel(difficulty);
         StatePanel statePanel = new StatePanel(board);
         board.setStatePanel(statePanel);

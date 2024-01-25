@@ -10,12 +10,13 @@ public class SudokuMenuBar extends JMenuBar {
     private JFrame frame;
     private MenuListener listener;
     // 构造方法 用来加入菜单组件
+    private JMenuItem resetGame;
     public SudokuMenuBar(JFrame frame) {
         this.frame = frame;
         this.listener = new MenuListener(this);
         JMenu sudokuMenu = new JMenu("File");
         JMenuItem newGame = new SudokuMenuItem("New Game", SudokuConstants.NEW_GAME);
-        JMenuItem resetGame = new SudokuMenuItem("Reset Game", SudokuConstants.RESET_GAME);
+        resetGame = new SudokuMenuItem("Reset Game", SudokuConstants.RESET_GAME);
         JMenuItem exit = new SudokuMenuItem("Exit", SudokuConstants.EXIT);
         this.add(sudokuMenu);
         sudokuMenu.add(newGame);
@@ -28,5 +29,8 @@ public class SudokuMenuBar extends JMenuBar {
     }
     public JFrame getFrame() {
         return frame;
+    }
+    public JMenuItem getResetGame() {
+        return resetGame;
     }
 }

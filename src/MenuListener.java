@@ -14,6 +14,9 @@ public class MenuListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // 提供菜单的功能
         SudokuMenuItem menuItem = (SudokuMenuItem) e.getSource();
+        if (!menuItem.isEnabled()) {
+            return;
+        }
         SudokuMain frame = (SudokuMain) menuBar.getFrame();
         switch (menuItem.getUsage()) {
             case (SudokuConstants.EXIT) :

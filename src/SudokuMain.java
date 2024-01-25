@@ -11,12 +11,14 @@ public class SudokuMain extends JFrame {
     private static final long serialVersionUID = 1L;
     // 选择难度的界面
     private GameDifficulty difficulty;
-
+    private SudokuMenuBar menu;
     public SudokuMain() {
         Container cp = getContentPane();
         cp.setLayout(new BorderLayout());
         WelcomePanel welcome = new WelcomePanel(cp, this);
-        JMenuBar menu = new SudokuMenuBar(this);
+        menu = new SudokuMenuBar(this);
+        JMenuItem resetGame = menu.getResetGame();
+        resetGame.setEnabled(false);
         setJMenuBar(menu);
         cp.add(welcome, BorderLayout.CENTER);
         pack();
