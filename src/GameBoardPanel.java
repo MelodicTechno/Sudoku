@@ -21,7 +21,6 @@ public class GameBoardPanel extends JPanel {
     private CellInputListener listener;
     // 待填上的空格数
     private int numOfToBeFilled;
-    private int numOfWromgGuess;
     private final GameDifficulty difficulty;
     private SudokuState state;
     private StatePanel statePanel;
@@ -89,18 +88,8 @@ public class GameBoardPanel extends JPanel {
     public Cell[][] getCells() {
         return cells;
     }
-
-    public void setNumOfToBeFilled(int numOfToBeFilled) {
-        this.numOfToBeFilled = numOfToBeFilled;
-    }
-    public void setNumOfWromgGuess(int numOfWromgGuess) {
-        this.numOfToBeFilled = numOfWromgGuess;
-    }
     public int getNumOfToBeFilled() {
         return numOfToBeFilled;
-    }
-    public int getNumOfWromgGuess() {
-        return numOfWromgGuess;
     }
     public GameDifficulty getDifficulty() {
         return difficulty;

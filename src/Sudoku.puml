@@ -2,241 +2,256 @@
 'https://plantuml.com/class-diagram
 left to right direction
 
-JFrame <|- SudokuMain
+JFrame -r-|> SudokuMain
 
 class SudokuMain {
-private GameDifficulty difficulty
-private SudokuMenuBar menu
-private GameBoardPanel board
-SudokuMain()
-SudokuMain(Difficulty difficulty)
-setDifficulty(GameDifficulty difficulty)
-getDifficulty()
-reset()
-setBoard(GameBoardPanel board)
+- difficulty: GameDifficulty
+- menu: SudokuMenuBar
+- board: GameBoardPanel
++ SudokuMain()
++ SudokuMain(Difficulty)
++ setDifficulty(GameDifficulty difficulty)
++ getDifficulty(void): GameDifficulty
++ reset(void): void
++ setBoard(GameBoardPanel): void
 }
-Cell -|> JTextField
+
+Cell -u-|> JTextField
+Cell -u-* Color
 
 class Cell {
-public static final Color BG_GIVEN
-public static final Color FG_GIVEN
-public static final Color FG_NOT_GIVEN
-public static final Color BG_TO_GUESS
-public static final Color BG_CORRECT_GUESS
-public static final Color BG_WRONG_GUESS
-public static final Font FONT_NUMBERS
-int row
-int col
-int number
-CellStatus status
-Cell(int row, int col)
-void newGame(int number, boolean isGiven)
-void paint()
-void makeBorder()
+- BG_GIVEN: Color
+- FG_GIVEN: Color
+- FG_NOT_GIVEN: Color
+- BG_TO_GUESS: Color
+- BG_CORRECT_GUESS: Color
+- BG_WRONG_GUESS: Color
+- FONT_NUMBERS: Font
+- row: int
+- col: int
+- number: int
+- status: CellStatus
++ Cell(int row, int col)
++ newGame(int, boolean): void
++ paint(void): void
++ makeBorder(void): void
 }
+
 class CellData {
-private int[][] data
-private boolean[][] isGivenMatrix
-private final int COL_SIZE
-private final int ROW_SIZE
-public CellData()
-public void generateInitialData()
-public int[][] getData()
-public boolean checkColumn(int number, int column)
-public boolean checkRow (int number, int row)
-public boolean checkNine(int number, int nineRow, int nineCol)
-public void shuffle()
-public boolean[][] getIsGiven(GameDifficulty difficulty)
-public boolean[][] getIsGiven(int cellsToGuess)
+- data: int[][]
+- isGivenMatrix: boolean[][]
+- COL_SIZE: int
+- ROW_SIZE: int
++ CellData()
++ generateInitialData(void): void
++ getData(void): int[][]
++ checkColumn(int, int): boolean
++ checkRow (int, int): boolean
++ checkNine(int, int, int): boolean
++ public void shuffle()
++ public boolean[][] getIsGiven(GameDifficulty difficulty)
++ public boolean[][] getIsGiven(int cellsToGuess)
 }
 
-CellInputListener ..|> ActionListener
+CellInputListener .l.|> ActionListener
 
-CellInputListener -* gameBoard
+CellInputListener -u-* gameBoard
 
 class CellInputListener {
-private GameBoardPanel gameBoard
-public CellInputListener(GameBoardPanel gameBoard)
-public void actionPerformed(ActionEvent e)
-public boolean processInput(String text)
++ gameBoard: GameBoardPanel
++ CellInputListener(GameBoardPanel)
++ actionPerformed(ActionEvent)
++ processInput(String): boolean
 }
 
 enum CellStatus {
-GIVEN
-TO_GUESS
-CORRECT_GUESS
-WRONG_GUESS
+- GIVEN
+- TO_GUESS
+- CORRECT_GUESS
+- WRONG_GUESS
 }
 
-DifficultyButton -|> JButton
+DifficultyButton -u-|> JButton
 
-DifficultyButton -* GameDifficulty
+DifficultyButton -d-* GameDifficulty
 
 class DifficultyButton {
-private GameDifficulty difficulty
-public DifficultyButton(String difficulty)
-public GameDifficulty getDifficulty()
+difficulty: GameDifficulty
+DifficultyButton(String)
+getDifficulty(void): GameDifficulty
 }
 
-GameBoardPanel -|> JPanel
-GameBoardPanel -* Cell
-GameBoardPanel -* Puzzle
-GameBoardPanel -* CellInputListener
-GameBoardPanel -* GameDifficulty
-GameBoardPanel -* SudokuState
-GameBoardPanel -* StatePanel
+GameBoardPanel -u-|> JPanel
+GameBoardPanel -l-* Cell
+GameBoardPanel -u-* Puzzle
+GameBoardPanel -r-* CellInputListener
+GameBoardPanel -u-* GameDifficulty
+GameBoardPanel -d-* SudokuState
+GameBoardPanel -l-* StatePanel
 
 class GameBoardPanel {
-public static final int CELL_SIZE
-public static final int BOARD_WIDTH
-public static final int BOARD_HEIGHT
-private Cell[][] cells
-private Puzzle puzzle
-private CellInputListener listener
-private int numOfToBeFilled
-private int numOfWromgGuess
-private final GameDifficulty difficulty
-private SudokuState state
-private StatePanel statePanel
-private SudokuMain main
+- CELL_SIZE: int
+- BOARD_WIDTH: int
+- BOARD_HEIGHT: int
+- cells: Cell[][]
+- puzzle: Puzzle
+- listener: CellInputListener
+- numOfToBeFilled: int
+- numOfWromgGuess: int
+- difficulty: GameDifficulty
+- state: SudokuState
+- statePanel: StatePanel
+- main: SudokuMain
++ GameBoardPanel(GameDifficulty)
++ newGame(void): void
++ newGame(GameDifficulty): void
++ isSolved(void): boolean
++ getCells(void): Cell[][]
++ getNumOfToBeFilled(void): int
++ getDifficulty(void): GameDifficulty
++ getState(void): SudokuState
++ setStatePanel(StatePanel): void
++ getStatePanel(void): StatePanel
++ setMain(SudokuMain): void
++ getMain(void): SudokuMain
 }
 
 enum GameDifficulty {
-EASY
-INTERMEDIATE
-DIFFICULT
+- EASY
+- INTERMEDIATE
+- DIFFICULT
 }
 
 MenuListener ..|> ActionListener
 MenuListener -* SudokuMenuBar
 
 class MenuListener {
-private SudokuMenuBar menuBar
-public MenuListener(SudokuMenuBar menuBar)
-public void actionPerformed(ActionEvent e)
+menuBar: SudokuMenuBar
+MenuListener(SudokuMenuBar)
+actionPerformed(ActionEvent): void
 }
 
 class Puzzle {
-int[][] numbers = new int[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE]
-boolean[][] isGiven = new boolean[SudokuConstants.GRID_SIZE][SudokuConstants.GRID_SIZE]
-public void newPuzzle(int cellsToGuess)
-public void newPuzzle(GameDifficulty difficulty)
+numbers: int[][]
+isGiven: boolean[][]
+newPuzzle(int): void
+newPuzzle(GameDifficulty): void
 }
 
-StatePanel -|> JPanel
-StatePanel -* SudokuState
-StatePanel -* GameBoardPanel
-StatePanel -* SudokuTimer
+StatePanel -d-|> JPanel
+StatePanel -d-* SudokuState
+StatePanel -u-* GameBoardPanel
+StatePanel -d-* SudokuTimer
 
 class StatePanel {
-private static final int WIDTH = SudokuConstants.WINDOW_SIZE
-private final SudokuState state
-private GameBoardPanel board
-private SudokuTimer timer
-public StatePanel(GameBoardPanel board)
-public SudokuState getState()
-public SudokuTimer getTimer()
+- WIDTH: int
+- state: SudokuState
+- board: GameBoardPanel
+- timer: SudokuTimer
++ StatePanel(GameBoardPanel)
++ getState(void): SudokuState
++ getTimer(void): SudokuTimer
 }
 
 class SudokuConstants {
-static final int GRID_SIZE = 9
-int WINDOW_SIZE = 9 * 9;
-String EXIT = "exit";
-String RESET_GAME = "reset game"
-String NEW_GAME = "new game"
-int difficultyToNumToGuess(GameDifficulty difficulty)
+- GRID_SIZE: int = 9
+- WINDOW_SIZE: int = 9 * 9
+- EXIT: String = "exit"
+- RESET_GAME: String = "reset game"
+- NEW_GAME: String = "new game"
++ difficultyToNumToGuess(GameDifficulty): int
 }
 
-SudokuDialog -|> JDialog
+SudokuDialog -l-|> JDialog
 class SudokuDialog {
-SudokuDialog(JFrame frame, String time)
++ SudokuDialog(JFrame, String)
 }
 
-SudokuMenuBar -|> JMenuBar
+SudokuMenuBar -u-|> JMenuBar
 
 class SudokuMenuBar {
-JFrame frame
-MenuListener listener
-JMenuItem resetGame
-SudokuMenuBar(JFrame frame)
-JFrame getFrame()
-JMenuItem getResetGame()
+- frame: JFrame
+- listener: MenuListener
+- resetGame: JMenuItem
++ SudokuMenuBar(JFrame)
++ getFrame(void): JFrame
++ getResetGame(void): JMenuItem
 }
 
-SudokuMenuItem -|> JMenuItem
+SudokuMenuItem -u-|> JMenuItem
 
 class SudokuMenuItem {
-String usage
-SudokuMenuItem(String text, String usage)
-String getUsage()
+- usage: String
++ SudokuMenuItem(String, String)
++ getUsage(void): String
 }
 
-SudokuState -* GameBoardPanel
+SudokuState -u-* GameBoardPanel
 
 class SudokuState {
-Color BG_GIVEN
-Font STATE_FONT
-int numOfToBeFilled
-GameBoardPanel board
-SudokuState(GameBoardPanel board)
-newState(GameBoardPanel board)
-void paint()
+BG_GIVEN: Color
+STATE_FONT: Font
+numOfToBeFilled: int
+Panelboard: GameBoard
+SudokuState(GameBoardPanel): void
+newState(GameBoardPanel): void
+paint(): void
 }
 
-SudokuState -|> JLabel
-SudokuState -* Color
-SudokuState -* Font
-SudokuState -* Thread
+SudokuState -l-|> JLabel
+SudokuState -u-* Color
+SudokuState -r-* Font
+SudokuState -d-* Thread
 
 class SudokuTimer {
-Color BG_GIVEN
-Color FG_GIVEN
-Font STATE_FONT
-String currentTime
-long initialTime
-CountingThread thread
-SudokuTimer()
-void stop()
-String getCurrentTime()
+- BG_GIVEN: Color
+- FG_GIVEN: Color
+- STATE_FONT: Font
+- currentTime: String
+- initialTime: long
+- thread: CountingThread
++ SudokuTimer(void)
++ stop(void): void
++ getCurrentTime(void): String
 }
 
-CountingThread -|> Thread
+CountingThread -u-|> Thread
 
 class CountingThread {
-boolean stopped
-CountingThread()
-void run()
-String format(long passedTime)
+- stopped: boolean
+- CountingThread(void)
++ void run()
++ format(long): String
 }
 
-WelcomeListener -|> ActionListener
-WelcomeListener -* WelcomePanel
-WelcomeListener -* Container
-WelcomeListener -* SudokuMain
+WelcomeListener -u-|> ActionListener
+WelcomeListener -u-* WelcomePanel
+WelcomeListener -u-* Container
+WelcomeListener -l-* SudokuMain
 
 class WelcomeListener {
-WelcomePanel welcomePage
-Container cp
-SudokuMain main
-WelcomeListener(WelcomePanel welcomePage)
-WelcomeListener(WelcomePanel welcomePage, Container cp, SudokuMain main)
-void actionPerformed(ActionEvent e)
+- welcomePage: WelcomePanel
+- cp: Container
+- main: SudokuMain
++ WelcomeListener(WelcomePanel)
++ WelcomeListener(WelcomePanel, Container, SudokuMain)
++ actionPerformed(ActionEvent): void
 }
 
-WelcomePanel -|> JPanel
+WelcomePanel -u-|> JPanel
 
 class WelcomePanel {
-int CELL_SIZE = 60
-int BOARD_WIDTH
-int BOARD_HEIGHT
-JLabel chooseDifficulty
-DifficultyButton[] dificulties
-WelcomeListener listener
-Container cp
-GameBoardPanel board
-SudokuMain main
-Font welcomeFont
-WelcomePanel(Container cp, SudokuMain main)
+- CELL_SIZE: int = 60
+- BOARD_WIDTH: int
+- BOARD_HEIGHT: int
+- chooseDifficulty: JLabel
+- dificulties: DifficultyButton[]
+- listener: WelcomeListener
+- cp: Container
+- board: GameBoardPanel
+- main: SudokuMain
+- welcomeFont: Font
++ WelcomePanel(Container, SudokuMain)
 }
 
 @enduml
