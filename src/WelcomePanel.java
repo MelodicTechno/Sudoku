@@ -17,14 +17,14 @@ public class WelcomePanel extends JPanel {
     private Container cp;
     private GameBoardPanel board;
     private SudokuMain main;
-    Font welcomFont = new Font("Times New Roman", Font.PLAIN, 24);
+    Font welcomeFont = new Font("Times New Roman", Font.PLAIN, 24);
 
     public WelcomePanel(Container cp, SudokuMain main) {
         this.main = main;
         this.cp = cp;
         listener = new WelcomeListener(this, cp, main);
         this.chooseDifficulty = new JLabel("Difficulty:");
-        chooseDifficulty.setFont(welcomFont);
+        chooseDifficulty.setFont(welcomeFont);
         this.dificulties = new DifficultyButton[]{new DifficultyButton("Easy"), new DifficultyButton("Intermediate"),
                 new DifficultyButton("Hard")};
         super.setLayout(new GridBagLayout());
@@ -34,7 +34,7 @@ public class WelcomePanel extends JPanel {
             dificulties[i].addActionListener(listener);
             super.add(dificulties[i]);
             dificulties[i].setVisible(true);
-            dificulties[i].setFont(welcomFont);
+            dificulties[i].setFont(welcomeFont);
         }
         super.setPreferredSize(new Dimension(BOARD_WIDTH, BOARD_HEIGHT));
     }

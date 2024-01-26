@@ -7,12 +7,8 @@ public class SudokuState extends JTextField {
     private static final long serialVersionUID = 1L;
     // 设置颜色 字体
     public static final Color BG_GIVEN = new Color(240, 240, 240); // RGB
-    public static final Color NOT_FILLED = new Color(0, 0, 0);
-    public static final Color BG_WRONG_GUESS   = new Color(216, 0, 0);
-    public static final Font FONT_NUMBERS = new Font("OCR A Extended", Font.PLAIN, 28);
     public static final Font STATE_FONT = new Font("Arial", Font.PLAIN, 22);
     private int numOfToBeFilled;
-    private int numOfWrongGuess;
     private GameBoardPanel board;
     public SudokuState(GameBoardPanel board) {
         this.board = board;
@@ -39,8 +35,5 @@ public class SudokuState extends JTextField {
         setText("To be completed: " + numOfToBeFilled);
         setEditable(false);
         setBackground(BG_GIVEN);
-    }
-    public void setNumOftoBeFilled(int numOftoBeFilled) {
-        this.numOfToBeFilled = numOftoBeFilled;
     }
 }

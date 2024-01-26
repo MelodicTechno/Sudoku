@@ -5,8 +5,8 @@ public class SudokuMenuBar extends JMenuBar {
     @Serial
     private static final long serialVersionUID = 1L;
     // 设置菜单大小
-    public static final int MENU_LENGTH = SudokuConstants.WINDOW_SIZE;
-    private static final int MENU_WIDTH = 30;
+    // public static final int MENU_LENGTH = SudokuConstants.WINDOW_SIZE;
+    // private static final int MENU_WIDTH = 30;
     private JFrame frame;
     private MenuListener listener;
     // 构造方法 用来加入菜单组件

@@ -138,6 +138,105 @@ public SudokuState getState()
 public SudokuTimer getTimer()
 }
 
+class SudokuConstants {
+static final int GRID_SIZE = 9
+int WINDOW_SIZE = 9 * 9;
+String EXIT = "exit";
+String RESET_GAME = "reset game"
+String NEW_GAME = "new game"
+int difficultyToNumToGuess(GameDifficulty difficulty)
+}
 
+SudokuDialog -|> JDialog
+class SudokuDialog {
+SudokuDialog(JFrame frame, String time)
+}
+
+SudokuMenuBar -|> JMenuBar
+
+class SudokuMenuBar {
+JFrame frame
+MenuListener listener
+JMenuItem resetGame
+SudokuMenuBar(JFrame frame)
+JFrame getFrame()
+JMenuItem getResetGame()
+}
+
+SudokuMenuItem -|> JMenuItem
+
+class SudokuMenuItem {
+String usage
+SudokuMenuItem(String text, String usage)
+String getUsage()
+}
+
+SudokuState -* GameBoardPanel
+
+class SudokuState {
+Color BG_GIVEN
+Font STATE_FONT
+int numOfToBeFilled
+GameBoardPanel board
+SudokuState(GameBoardPanel board)
+newState(GameBoardPanel board)
+void paint()
+}
+
+SudokuState -|> JLabel
+SudokuState -* Color
+SudokuState -* Font
+SudokuState -* Thread
+
+class SudokuTimer {
+Color BG_GIVEN
+Color FG_GIVEN
+Font STATE_FONT
+String currentTime
+long initialTime
+CountingThread thread
+SudokuTimer()
+void stop()
+String getCurrentTime()
+}
+
+CountingThread -|> Thread
+
+class CountingThread {
+boolean stopped
+CountingThread()
+void run()
+String format(long passedTime)
+}
+
+WelcomeListener -|> ActionListener
+WelcomeListener -* WelcomePanel
+WelcomeListener -* Container
+WelcomeListener -* SudokuMain
+
+class WelcomeListener {
+WelcomePanel welcomePage
+Container cp
+SudokuMain main
+WelcomeListener(WelcomePanel welcomePage)
+WelcomeListener(WelcomePanel welcomePage, Container cp, SudokuMain main)
+void actionPerformed(ActionEvent e)
+}
+
+WelcomePanel -|> JPanel
+
+class WelcomePanel {
+int CELL_SIZE = 60
+int BOARD_WIDTH
+int BOARD_HEIGHT
+JLabel chooseDifficulty
+DifficultyButton[] dificulties
+WelcomeListener listener
+Container cp
+GameBoardPanel board
+SudokuMain main
+Font welcomeFont
+WelcomePanel(Container cp, SudokuMain main)
+}
 
 @enduml
