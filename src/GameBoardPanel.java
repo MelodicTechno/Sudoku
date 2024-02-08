@@ -1,7 +1,8 @@
-import java.awt.*;
-import java.awt.event.MouseEvent;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.io.Serial;
-import javax.swing.*;
+
+import javax.swing.JPanel;
 
 /*
  * 创建一个JPanel的子类类型，该面板中包含了9*9个Cell对象，采用了GridLayout布局管理器

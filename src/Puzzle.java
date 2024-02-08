@@ -1,4 +1,3 @@
-import java.util.Random;
 /**
  * 定义Puzzle类型，用来表达和一局游戏相关的信息。
  */

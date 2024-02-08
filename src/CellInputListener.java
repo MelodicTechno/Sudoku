@@ -1,7 +1,8 @@
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
+
+import javax.swing.JFrame;
+
 
 /*
  * 创建所有单元格都可以使用的一个监听器类型
@@ -16,7 +17,7 @@ public class CellInputListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         // 初始剩余数即为总数
-        int numToBeFilled = gameBoard.getNumOfToBeFilled();
+        // int numToBeFilled = gameBoard.getNumOfToBeFilled();
         // 获得是哪个单元格出发了回车事件（获得事件源）
         Cell sourceCell = (Cell)e.getSource();
         if (sourceCell.status == CellStatus.GIVEN) {
