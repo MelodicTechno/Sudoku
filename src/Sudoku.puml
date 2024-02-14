@@ -4,6 +4,33 @@ left to right direction
 
 JFrame -r-|> SudokuMain
 
+class GameBoardPanel {
+- CELL_SIZE: int
+- BOARD_WIDTH: int
+- BOARD_HEIGHT: int
+- cells: Cell[][]
+- puzzle: Puzzle
+- listener: CellInputListener
+- numOfToBeFilled: int
+- numOfWromgGuess: int
+- difficulty: GameDifficulty
+- state: SudokuState
+- statePanel: StatePanel
+- main: SudokuMain
++ GameBoardPanel(GameDifficulty)
++ newGame(void): void
++ newGame(GameDifficulty): void
++ isSolved(void): boolean
++ getCells(void): Cell[][]
++ getNumOfToBeFilled(void): int
++ getDifficulty(void): GameDifficulty
++ getState(void): SudokuState
++ setStatePanel(StatePanel): void
++ getStatePanel(void): StatePanel
++ setMain(SudokuMain): void
++ getMain(void): SudokuMain
+}
+
 class SudokuMain {
 - difficulty: GameDifficulty
 - menu: SudokuMenuBar
@@ -89,32 +116,7 @@ GameBoardPanel -u-* GameDifficulty
 GameBoardPanel -d-* SudokuState
 GameBoardPanel -l-* StatePanel
 
-class GameBoardPanel {
-- CELL_SIZE: int
-- BOARD_WIDTH: int
-- BOARD_HEIGHT: int
-- cells: Cell[][]
-- puzzle: Puzzle
-- listener: CellInputListener
-- numOfToBeFilled: int
-- numOfWromgGuess: int
-- difficulty: GameDifficulty
-- state: SudokuState
-- statePanel: StatePanel
-- main: SudokuMain
-+ GameBoardPanel(GameDifficulty)
-+ newGame(void): void
-+ newGame(GameDifficulty): void
-+ isSolved(void): boolean
-+ getCells(void): Cell[][]
-+ getNumOfToBeFilled(void): int
-+ getDifficulty(void): GameDifficulty
-+ getState(void): SudokuState
-+ setStatePanel(StatePanel): void
-+ getStatePanel(void): StatePanel
-+ setMain(SudokuMain): void
-+ getMain(void): SudokuMain
-}
+
 
 enum GameDifficulty {
 - EASY
